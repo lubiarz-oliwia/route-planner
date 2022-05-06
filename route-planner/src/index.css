@@ -1,0 +1,78 @@
+*{
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+body {
+  background-color: #F8F7FF;
+}
+input {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  padding: 10px 0;
+}
+
+/* body {
+  font-family: 'Roboto', sans-serif;
+} */
+
+.leaflet-container {
+  height: 80vh;
+  width: 100%;;
+}
+
+.leaflet-right {
+  width: 30%;
+  font-size: 0.6rem;
+  background-color: #fff;
+  overflow: auto;
+}
+.leaflet-routing-alt > table > tbody > tr > td:last-child {
+  white-space: nowrap;
+  text-align: right;
+}
+.leaflet-routing-alt h2, .leaflet-routing-alt h3{
+  display: none;
+} 
+.leaflet-routing-alternatives-container > .leaflet-routing-alt{
+  height: 50vh;
+  overflow: scroll;
+}
+.leaflet-routing-alt-minimized {
+  display: none;
+}
+
+.leaflet-right .leaflet-control {
+  margin-top: 0;
+}
+.no-suggestions {
+  color: #999;
+  padding: 0.5rem;
+}
+.suggestions {
+  border: 1px solid #999;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  max-height: 143px;
+  overflow-y: auto;
+  padding-left: 0;
+  width: calc(300px + 1rem);
+}
+.suggestions li {
+  padding: 0.5rem;
+}
+.suggestion-active,
+.suggestions li:hover {
+  background-color: #008f68;
+  color: #fae042;
+  cursor: pointer;
+  font-weight: 700;
+}
+.suggestions li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
+}
