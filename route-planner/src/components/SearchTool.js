@@ -1,14 +1,7 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import Button from "@mui/material/Button";
-import { useLocation } from "react-router-dom";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import debounce from "lodash/debounce";
-import AuthContext from "../store/context";
-import authContext from "../store/context";
-import LanguageContext from "../store/context";
-import { Box } from "@mui/material";
+import { TextField, Autocomplete, Button, Box } from "@mui/material";
 import { callApi } from "../utils";
 
 function SearchTool() {
@@ -20,14 +13,13 @@ function SearchTool() {
  const valueEndRef = useRef("");
 
  const handleChange = (inputValue) => {
-  console.log(inputValue);
-  const t = () => {
-   callApi(inputValue, "SUGGEST").then((data) =>
-    setOptions(data.suggestions.map((suggestion) => suggestion.label))
-   );
+  const handleSuggestion = () => {
+   callApi(inputValue, "SUGGEST").then((data) => {
+    setOptions(data.suggestions.map((suggestion) => suggestion.label));
+   });
   };
-  const k = debounce(t, 1000, { maxWait: 1000 });
-  k();
+  const debouncer = debounce(handleSuggestion, 1000, { maxWait: 1000 });
+  debouncer();
  };
 
  const sendValue = async () => {
@@ -57,13 +49,22 @@ function SearchTool() {
    flexDirection="column"
    alignItems="center"
    justify="center"
-   sx={{ p: 10, border: "1px solid grey", width: "50%", borderRadius: 2, maxWidth: '500px' }}
+   sx={{
+    width: "50%",
+    borderRadius: 2,
+    maxWidth: "700px",
+    p: 5,
+    boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
+    backgroundColor: "#fff",
+    mt: 5,
+   }}
   >
    <Autocomplete
     disablePortal
     id="combo-box-demo"
     options={options}
     sx={{ width: "100%", pb: 2 }}
+    filterOptions={(x) => x}
     renderInput={(params) => (
      <TextField
       {...params}
@@ -78,6 +79,7 @@ function SearchTool() {
     id="combo-box-demo"
     options={options}
     sx={{ width: "100%", pb: 4 }}
+    filterOptions={(x) => x}
     renderInput={(params) => (
      <TextField
       {...params}
@@ -88,7 +90,7 @@ function SearchTool() {
     )}
    />
    <Button
-    style={{ fontSize: "12px", fontWeight: "600" }}
+    style={{ fontSize: "12px", fontWeight: "500" }}
     variant="contained"
     color="primary"
     size="large"

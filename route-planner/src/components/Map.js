@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import RoutingMachine from "./RoutingMachine";
 
-const Map = ({ startPoint, endPoint, setDistance, setSummary }) => {
+const Map = ({ startPoint, endPoint, setDistance, setSummary, setTime }) => {
  const [text, setText] = useState("");
 
  return (
@@ -12,7 +12,6 @@ const Map = ({ startPoint, endPoint, setDistance, setSummary }) => {
      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     />
-
     <RoutingMachine
      ax={startPoint.lat}
      ay={startPoint.lng}
@@ -20,6 +19,7 @@ const Map = ({ startPoint, endPoint, setDistance, setSummary }) => {
      by={endPoint.lng}
      setDistance={setDistance}
      setSummary={setSummary}
+     setTime={setTime}
      setText={setText}
     />
    </MapContainer>

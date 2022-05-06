@@ -1,9 +1,6 @@
-import Map from "./components/Map";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SearchTool from "./components/SearchTool";
-import PlacesAutocomplete from "./components/SearchTool";
-import React, { useContext, useState } from "react";
-import LanguageContext from "./store/context";
+import React, { useState } from "react";
+import RouteContext from "./store/context";
 import SearchPage from "./pages/SearchPage";
 import MapPage from "./pages/MapPage";
 
@@ -12,21 +9,22 @@ function App() {
   start: "start",
   startPointposition: { lat: "", lng: "" },
   end: "end",
-  endPointposition: { lat: '', lng: '' }
+  endPointposition: { lat: "", lng: "" },
  });
- const [savedRoutes, setSavedRoutes] = useState([])
+
+ const [savedRoutes, setSavedRoutes] = useState([]);
 
  const value = { routePoints, setRoutePoints, savedRoutes, setSavedRoutes };
 
  return (
-  <LanguageContext.Provider value={value}>
+  <RouteContext.Provider value={value}>
    <BrowserRouter>
     <Routes>
      <Route path="/route-plan" element={<MapPage />} />
      <Route path="/" element={<SearchPage />} />
     </Routes>
    </BrowserRouter>
-  </LanguageContext.Provider>
+  </RouteContext.Provider>
  );
 }
 

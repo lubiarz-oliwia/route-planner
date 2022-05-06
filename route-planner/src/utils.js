@@ -1,8 +1,6 @@
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-// Date Fns is used to format the dates we receive
-// from our API call
-// import { format } from "date-fns";
+
 let API_KEY = "aXwOot4QXwaQZazqTtmN4qxIHQ59kNzig3kYKwPD0z4";
 
 export const callApi = (inputValue, type) => {
@@ -22,44 +20,28 @@ export const callApi = (inputValue, type) => {
  return fetch(`${url}&apiKey=${API_KEY}`).then((response) => response.json());
 };
 
+const generatePDF = (routes) => {
+ const doc = new jsPDF();
 
+ const tableColumn = ["Instruction", "Distance"];
+ const tableRows = [];
 
-// define a generatePDF function that accepts a tickets argument
-const generatePDF = tickets => {
-  // initialize jsPDF
-  const doc = new jsPDF();
+ routes.summary[0].instructions.forEach((instruction) => {
+  const ticketData = [
+   instruction.text,
+   Math.round(instruction.distance / 1000) + "km",
+  ];
+  tableRows.push(ticketData);
+ });
 
-  // define the columns we want and their titles
-  const tableColumn = ["Instruction", "Distance", "Issue", "Status", "Closed on"];
-  // define an empty array of rows
-  const tableRows = [];
-
-  // for each ticket pass all its data into an array
- 
-  tickets.summary[0].instructions.forEach(instruction => {
-    const ticketData = [
-      instruction.text,
-      instruction.distance,
-      // called date-fns to format the date on the ticket
-    ];
-    // push each tickcet's info into a row
-    tableRows.push(ticketData);
-  });
-
-
-  // startY is basically margin-top
-
-//   ticket title. and margin-top + margin-left
-  doc.text('Start point: ' + tickets.start, 14, 15);
-  doc.text('End point: ' + tickets.end, 14, 30);
-  doc.text('Distance: ' + tickets.distance + 'km', 14, 45);
-//   doc.text('Time: ' + tickets.summary[0].summary.totalTime + 'km', 14, 45);
-
-  doc.text('Distance: ' + tickets.summary[0].name, 14, 60);
-  doc.autoTable(tableColumn, tableRows, { startY:  120});
-
-  // we define the name of our PDF file.
-  doc.save(`report_${tickets.end}.pdf`);
+ // startY is basically margin-top
+ //   ticket title. and margin-top + margin-left
+ doc.text("Start point: " + routes.start, 14, 15);
+ doc.text("End point: " + routes.end, 14, 30);
+ doc.text("Distance: " + routes.distance + " km", 14, 45);
+ doc.text("Time: " + routes.time + " hrs", 14, 60);
+ doc.autoTable(tableColumn, tableRows, { startY: 80 });
+ doc.save(`report_${routes.end}.pdf`);
 };
 
 export default generatePDF;

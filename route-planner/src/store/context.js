@@ -1,6 +1,5 @@
 import React from "react";
 
-// set the defaults
-const LanguageContext = React.createContext({});
+const RouteContext = React.createContext({});
 
-export default LanguageContext;
+export default RouteContext;
