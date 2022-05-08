@@ -37,6 +37,12 @@ h5 span {
   overflow: auto;
 }
 
+@media (max-width: 900px) {
+  .leaflet-right {
+    width: 50%;
+  }
+}
+
 .leaflet-routing-alt>table>tbody>tr>td:last-child {
   white-space: nowrap;
   text-align: right;

@@ -26,10 +26,11 @@ function SearchPage() {
  };
 
  return (
-  <Grid container sx={{ p: 5 }}>
+  <Grid container sx={{ p: 5 }} gap={4}>
    <Grid
     item
-    xs={savedRoutes.length ? 6 : 12}
+    xs={12}
+    md={savedRoutes.length ? 5 : 12}
     style={
      savedRoutes.length
       ? null
@@ -45,10 +46,10 @@ function SearchPage() {
     <SearchTool />
    </Grid>
    {savedRoutes.length ? (
-    <Grid item xs={6}>
+    <Grid item xs={12} md={6}>
      <h1>Saved routes</h1>
      <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="simple table">
+      <Table  aria-label="simple table">
        <TableHead>
         <TableRow>
          <TableCell>Start point</TableCell>

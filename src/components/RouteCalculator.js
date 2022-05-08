@@ -22,7 +22,6 @@ function RouteCalculator({ distance, time, onSaveRoute, start, end }) {
    justify="center"
    sx={{
     p: 2,
-    width: "100%",
     borderRadius: 2,
     boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
     backgroundColor: "#fff",

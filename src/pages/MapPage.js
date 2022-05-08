@@ -33,7 +33,7 @@ function MapPage() {
 
  return (
   <Grid container gap={4} sx={{ p: 5 }}>
-   <Grid item xs={7}>
+   <Grid item xs={12} md={7}>
     <h1>Your route</h1>
     <Map
      startPoint={startPointposition}
@@ -43,7 +43,7 @@ function MapPage() {
      setTime={setTime}
     />
    </Grid>
-   <Grid item xs={4}>
+   <Grid item xs={12} md={4}>
     <h1>Route calculation</h1>
     <RouteCalculator
      distance={distance}

@@ -50,7 +50,7 @@ function SearchTool() {
    alignItems="center"
    justify="center"
    sx={{
-    width: "50%",
+    minWidth: "240px",
     borderRadius: 2,
     maxWidth: "700px",
     p: 5,
